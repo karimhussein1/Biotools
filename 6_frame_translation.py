@@ -9,6 +9,7 @@ if os.path.exists(file_path):
         lines = f.readlines()
 else:
     print('The file does not exist')
+    exit()
 
 
 # getting the sequences in a dictionary structures {id:sequence}
@@ -104,6 +105,7 @@ def orf_finder_rev(dna):
 for seq in seqs.values():
     orf_finder(seq)
     orf_finder_rev(revcomp(seq))
+
 
 
 frames = frame1 + frame2 + frame3 + frame4 + frame5 + frame6

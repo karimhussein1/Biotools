@@ -8,6 +8,7 @@ if os.path.exists(file_path):
         lines = f.readlines()
 else:
     print('The file does not exist')
+    exit()
 
 # getting the sequences in a dictionary structures {id:sequence}
 seqs = {}

@@ -7,6 +7,7 @@ if os.path.exists(file_path):
         lines = f.readlines()
 else:
     print('The file does not exist')
+    exit()
 
 seqs = {}
 for line in lines:
@@ -22,9 +23,13 @@ def gc_content(sequences):
     """calculating gc content of a fasta file"""
     GCcontent = {}
     for Id, Seq in sequences.items():
-        GCcontent[Id] = str(round(Seq.count("G") + Seq.count("C") / len(Seq) * 100, 3)) + '%'
+        GCcontent[Id] = str(round(Seq.count("G") + Seq.count("C") / len(Seq) * 100, 2)) + '%'
     return GCcontent
 
 
 GC_content = gc_content(seqs)
+output = GC_content
 print(GC_content)
+f = open("GC_content.txt", "w")
+f.writelines(str(GC_content))
+f.close()

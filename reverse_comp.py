@@ -9,13 +9,13 @@ if os.path.exists(file_path):
         lines = f.readlines()
 else:
     print('The file does not exist')
+    exit()
 
 seqs = {}
 for line in lines:
     line=line.strip()
     if line.startswith('>'):
-        words = line.split()
-        name = words[0]
+        name = line
         seqs[name]=''
     else:
         seqs[name]= seqs[name]+line
@@ -33,5 +33,11 @@ reverse_fasta = revcomp(seqs)
 print(reverse_fasta)
 
 # print only the reversed sequences
+f = open("reverse_complement.txt", "w")
 for iD, seq in reverse_fasta.items():
-    print(seq)
+    print(iD, "\n", seq)
+    f.write(iD)
+    f.write("\n")
+    f.write(seq)
+    f.write("\n")
+f.close()

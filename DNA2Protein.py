@@ -1,3 +1,4 @@
+#!/usr/bin/env python
 # copyright (c) 2022-2023, Karim Hussein
 # this is a python script to convert DNA FASTA files to protein sequences (amino acids).
 
@@ -10,6 +11,7 @@ if os.path.exists(file_path):
         lines = f.readlines()
 else:
     print('The file does not exist')
+    exit()
 
 # getting the sequences in a dictionary structures {id:sequence}
 seqs = {}
@@ -108,20 +110,36 @@ def translate(sequence):
     return protein
 
 # taking user's input which frame to translate
-orf = input("Please select which open reading frame to translate \ntype 1 or 2 or 3 or press enter if you want to translate all the open reading frames \n")
+orf = input("Please select which open reading frame to translate \
+            \ntype 1 or 2 or 3 or press enter if you want to translate all the open reading frames \n")
+f = open("translation.txt", "w")
 if orf == "1":
     Frame1_translation = translate(''.join([str(elem) for i,elem in enumerate(frame1)]))
-    print("Frame 1 translation is", "\n", Frame1_translation)
+    output = ("Frame 1 translation", "\n", Frame1_translation)
+    f.writelines(output)
+    print("check translation.txt file")
+    f.close()
+    exit()
 if orf == "2":
     Frame2_translation = translate(''.join([str(elem) for i,elem in enumerate(frame2)]))
-    print("Frame 2 translation is", "\n", Frame2_translation)
-if orf == "3":
+    output = ("Frame 2 translation", "\n", Frame2_translation)
+    f.writelines(output)
+    print("check translation.txt file")
+    f.close()
+    exit()
+if  orf == "3":
     Frame3_translation = translate(''.join([str(elem) for i,elem in enumerate(frame3)]))
-    print("Frame 3 translation is", "\n", Frame3_translation)
+    output = ("Frame 3 translation", "\n", Frame3_translation)
+    f.writelines(output)
+    print("check translation.txt file")
+    f.close()
+    exit()
 else:
     Frame1_translation = translate(''.join([str(elem) for i,elem in enumerate(frame1)]))
-    print("Frame 1 translation is", "\n", Frame1_translation)
     Frame2_translation = translate(''.join([str(elem) for i,elem in enumerate(frame2)]))
-    print("Frame 2 translation is", "\n", Frame2_translation)
     Frame3_translation = translate(''.join([str(elem) for i,elem in enumerate(frame3)]))
-    print("Frame 3 translation is", "\n", Frame3_translation)
+    output = ("Frame 1 translation", "\n", Frame1_translation, "\n", "Frame 2 translation",\
+              "\n", Frame2_translation, "\n", "Frame 3 translation", "\n", Frame3_translation)
+    f.writelines(output)
+    print("check translation.txt file")
+    f.close()
