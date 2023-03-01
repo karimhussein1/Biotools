@@ -47,7 +47,10 @@ Repeat_len = input("Please enter the length of the repeat: ")
 # calling n_repeats function
 repeats = n_repeats(all_seqs, int(Repeat_len))
 # printing the repeats and how many times they exist
-print(repeats)
+#print("here is all the repeats of length ", Repeat_len, "\n", repeats)
+output = ("all the repeats of length ", str(Repeat_len), " and their occurrences", "\n", str(repeats))
+f = open("repeats.txt", "w")
+f.writelines(output)
 
 
 # reversing the dictionary to use the max function
@@ -55,7 +58,10 @@ rev_dict = {}
 for key, value in repeats.items():
     rev_dict[value] = key
 
-print(rev_dict)
+#print(rev_dict)
 
 # print the most frequent sequence for the specified length
-print("the maximum occurring repeat is", "\n", max(rev_dict.items()))
+#print("the most occurring repeat of length", Repeat_len, "is", "\n", max(rev_dict.items()))
+output2 = ("\n", "the most occurring repeat of length ", str(Repeat_len), " is", "\n", str(max(rev_dict.items())))
+f.writelines(output2)
+f.close()
